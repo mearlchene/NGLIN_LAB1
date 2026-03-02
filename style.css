@@ -200,14 +200,12 @@ body > a:hover {
     transform: translateY(-1px);
 }
 
-/* Add Student — filled accent button */
 body > a:first-of-type {
     background: linear-gradient(135deg, var(--accent), #8b85ff);
     color: #fff;
     border: none;
 }
 
-/* Logout — outline danger button */
 body > a:last-of-type {
     background: transparent;
     color: var(--danger);
@@ -229,7 +227,6 @@ p {
     margin-bottom: 0.25rem;
 }
 
-/* back link */
 body > br ~ a {
     display: inline-block;
     margin-top: 1.5rem;
@@ -241,13 +238,11 @@ body > br ~ a {
 
 body > br ~ a:hover { color: var(--accent); }
 
-/* readonly inputs */
 input[readonly] {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-/* ── ALERTS ─────────────────────────────────────── */
 p[style*="color:red"],
 p[style*="color: red"] {
     background: rgba(255, 101, 132, 0.1);
@@ -270,7 +265,6 @@ p[style*="color: green"] {
     font-size: 0.9rem;
 }
 
-/* ── SCROLLBAR ──────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
