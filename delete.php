@@ -1,13 +1,24 @@
 <?php
 include "db.php";
 
-$id = $_GET['id'];
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
 
-$stmt = $conn->prepare("DELETE FROM students WHERE id = ?");
-$stmt->bind_param("i", $id);
+    $id = $_GET['id'];
 
-$stmt->execute();
+    $del = $conn->prepare("DELETE FROM students WHERE id = ?");
+    $del->bind_param("i", $id);
 
-header("Location: student_record.php");
-exit();
+    if($del->execute()){
+        header("Location: student_records.php");
+        exit();
+    } else {
+        echo "Error deleting record.";
+    }
+
+    $del->close();
+} else {
+    echo "Invalid ID.";
+}
+
+$conn->close();
 ?>

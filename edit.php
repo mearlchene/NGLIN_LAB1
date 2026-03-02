@@ -1,103 +1,57 @@
 <?php
 include "db.php";
 
-$id = $_GET['id'] ?? '';
-if ($id === '' || !is_numeric($id)) {
-    header("Location: student_records.php");
-    exit();
-}
+$id = $_GET['id'] ?? null;
 
-$row = null;
-$errors = [];
-$message = '';
+$get = mysqli_query($conn, "SELECT * FROM students WHERE id = $id");
+$student = mysqli_fetch_assoc($get);
 
-$stmt = $conn->prepare("SELECT id, id_number, name, email, course FROM students WHERE id = ?");
-if ($stmt) {
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $stmt->close();
-}
+$message = "";
 
-if (!$row) {
-    header("Location: student_records.php");
-    exit();
-}
+if (isset($_POST['update'])) {
+    $name   = $_POST['name'];
+    $email  = $_POST['email'];
+    $course = $_POST['course'];
 
-$id_number = $row['id_number'];
-$name = $row['name'];
-$email = $row['email'];
-$course = $row['course'];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    $id_number = trim($_POST['id_number'] ?? '');
-    $name = trim($_POST['name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $course = trim($_POST['course'] ?? '');
-
-    if ($id_number === '') { $errors[] = 'ID number is required.'; }
-    if ($name === '') { $errors[] = 'Name is required.'; }
-    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) { $errors[] = 'Valid email is required.'; }
-    if ($course === '') { $errors[] = 'Course is required.'; }
-
-    if (empty($errors)) {
-        $stmt = $conn->prepare("UPDATE students SET id_number = ?, name = ?, email = ?, course = ? WHERE id = ?");
-        if ($stmt) {
-            $stmt->bind_param("ssssi", $id_number, $name, $email, $course, $id);
-            if ($stmt->execute()) {
-                $message = 'Student updated successfully.';
-            } else {
-                $errors[] = 'Database error: ' . $stmt->error;
-            }
-            $stmt->close();
-        } else {
-            $errors[] = 'Prepare failed: ' . $conn->error;
+    if ($name == "" || $email == "") {
+        $message = "Name and Email are required!";
+    } else {
+        $sql = "UPDATE students 
+                SET name='$name', email='$email', course='$course'
+                WHERE id=$id";
+        if (mysqli_query($conn, $sql)) {
+            header("Location: student_records.php");
+            exit;
         }
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>Edit Student</title>
 </head>
 <body>
 
-<h2>Edit Student</h2>
+<h2>Edit Students Records</h2>
 
-<?php if ($message): ?>
-    <p><?php echo htmlspecialchars($message); ?></p>
-<?php endif; ?>
+<form method="post">
+    <label>Name</label><br>
+    <input type="text" name="name" value="<?php echo ($student['name']); ?>"><br><br>
 
-<?php if (!empty($errors)): ?>
-    <ul>
-        <?php foreach ($errors as $e): ?>
-            <li><?php echo htmlspecialchars($e); ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
+    <label>Email</label><br>
+    <input type="email" name="email" value="<?php echo ($student['email']); ?>"><br><br>
 
-<form method="POST">
-    <label>ID Number</label>
-    <input type="text" name="id_number" value="<?php echo htmlspecialchars($id_number); ?>" required>
+    <label>Course</label><br>
+    <input type="text" name="course" value="<?php echo ($student['course']); ?>"><br><br>
 
-    <label>Name</label>
-    <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
-
-    <label>Email</label>
-    <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-
-    <label>Course</label>
-    <input type="text" name="course" value="<?php echo htmlspecialchars($course); ?>" required>
-
-    <button type="submit" name="update">Update Student</button>
+    <button type="submit" name="update">Update</button>
 </form>
 
-<a href="student_records.php">Back to Records</a>
+<br>
+<a href="student_records.php">Back</a>
 
 </body>
 </html>

@@ -21,17 +21,14 @@ if(isset($_POST['add'])){
     <title>Dashboard</title>
       <h2>Student Record</h2>
 
-<?php if ($message): ?>
-    <p><?php echo htmlspecialchars($message); ?></p>
-<?php endif; ?>
-
-<?php if (!empty($errors)): ?>
-    <ul>
-        <?php foreach ($errors as $e): ?>
-            <li><?php echo htmlspecialchars($e); ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Student Record</h2>
 
 <form method="POST">
     <label>ID Number</label><br>
@@ -47,8 +44,10 @@ if(isset($_POST['add'])){
     <input type="text" name="course" required><br><br>
 
     <button type="submit" name="add">Add Student →</button>
+
 </form>
 
+<br>
 <a href="student_records.php">View Records</a>
 
 </body>
