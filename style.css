@@ -7,7 +7,7 @@
 }
 
 :root {
-    --bg: #0f0f13;
+    --bg: #1e1e2e;
     --surface: #1a1a24;
     --surface2: #22222f;
     --accent: #6c63ff;
@@ -122,14 +122,14 @@ table {
     width: calc(100% - 4rem);
     margin: 1.5rem 2rem;
     border-collapse: collapse;
-    background: var(--surface);
+    background: #2e2e45;       
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
 }
 
 table th {
-    background: var(--surface2);
+    background: #38385a;        
     padding: 1rem 1.25rem;
     text-align: left;
     font-family: 'Syne', sans-serif;
@@ -150,7 +150,7 @@ table td {
 table tr:last-child td { border-bottom: none; }
 
 table tr:hover td {
-    background: rgba(108, 99, 255, 0.05);
+    background: rgba(108, 99, 255, 0.1);
 }
 
 table td a {
@@ -268,3 +268,56 @@ p[style*="color: green"] {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+/* ── CENTER ADD / EDIT FORMS ────────────────────── */
+body:has(form) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+body:has(form) h2 {
+    margin: 0 0 1.5rem 0;
+    -webkit-text-fill-color: unset;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body:has(form) form {
+    margin: 0;
+    width: 100%;
+    max-width: 480px;
+}
+
+body:has(form) > br ~ a {
+    margin: 1.5rem 0 0 0;
+}
+/* ── LOGOUT BUTTON UPPER RIGHT ──────────────────── */
+body:has(table) {
+    position: relative;
+}
+
+body:has(table) a[href="logout.php"] {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    margin: 0;
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+body:has(table) a[href="logout.php"]:hover {
+    background: var(--danger);
+    color: #fff;
+}

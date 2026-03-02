@@ -54,7 +54,6 @@ if (isset($_POST['update'])) {
 <head>
     <meta charset="utf-8">
     <title>Edit Student</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -76,36 +75,13 @@ if (isset($_POST['update'])) {
 
     <label>Course</label><br>
     <input type="text" name="course" value="<?php echo htmlspecialchars($student['course']); ?>" required><br><br>
-=======
-</head>
-<body>
-
-<h2>Edit Students Records</h2>
-
-<form method="post">
-    <label>Name</label><br>
-    <input type="text" name="name" value="<?php echo ($student['name']); ?>"><br><br>
-
-    <label>Email</label><br>
-    <input type="email" name="email" value="<?php echo ($student['email']); ?>"><br><br>
-
-    <label>Course</label><br>
-    <input type="text" name="course" value="<?php echo ($student['course']); ?>"><br><br>
->>>>>>> ea37ff5cf8619eb3b321777cd28589af5f7a24d5
 
     <button type="submit" name="update">Update</button>
 </form>
 
 <br>
-<<<<<<< HEAD
 <a href="index.php">Back</a>
 
 </body>
 </html>
 <?php $conn->close(); ?>
-=======
-<a href="student_records.php">Back</a>
-
-</body>
-</html>
->>>>>>> ea37ff5cf8619eb3b321777cd28589af5f7a24d5
