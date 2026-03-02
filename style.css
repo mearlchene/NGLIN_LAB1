@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0f0f13;
+    --surface: #1a1a24;
+    --surface2: #22222f;
+    --accent: #6c63ff;
+    --accent2: #ff6584;
+    --text: #e8e8f0;
+    --text-muted: #7a7a9a;
+    --border: #2e2e42;
+    --success: #4ecca3;
+    --danger: #ff6584;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 1.25rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+button[type="submit"],
+button {
+    width: 100%;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, var(--accent), #8b85ff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+}
+
+button:hover { opacity: 0.9; }
+button:active { transform: scale(0.98); }
+
+body > h2 {
+    padding: 2rem 2rem 0;
+    -webkit-text-fill-color: unset;
+    background: none;
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+}
+
+table {
+    width: calc(100% - 4rem);
+    margin: 1.5rem 2rem;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+table th {
+    background: var(--surface2);
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+}
+
+table td {
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.93rem;
+}
+
+table tr:last-child td { border-bottom: none; }
+
+table tr:hover td {
+    background: rgba(108, 99, 255, 0.05);
+}
+
+table td a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    margin-right: 4px;
+}
+
+table td a:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+table td a:last-child {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+table td a:last-child:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+body > br + a,
+body > a {
+    display: inline-block;
+    margin: 0 0.5rem 1.5rem 2rem;
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 8px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+body > br + a:hover,
+body > a:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+/* Add Student — filled accent button */
+body > a:first-of-type {
+    background: linear-gradient(135deg, var(--accent), #8b85ff);
+    color: #fff;
+    border: none;
+}
+
+/* Logout — outline danger button */
+body > a:last-of-type {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+body > a:last-of-type:hover {
+    background: var(--danger);
+    color: #fff;
+    opacity: 1;
+}
+
+body > form {
+    margin: 0 2rem;
+    max-width: 480px;
+}
+
+p {
+    margin-bottom: 0.25rem;
+}
+
+/* back link */
+body > br ~ a {
+    display: inline-block;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+}
+
+body > br ~ a:hover { color: var(--accent); }
+
+/* readonly inputs */
+input[readonly] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ── ALERTS ─────────────────────────────────────── */
+p[style*="color:red"],
+p[style*="color: red"] {
+    background: rgba(255, 101, 132, 0.1);
+    border: 1px solid rgba(255, 101, 132, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    color: var(--danger) !important;
+    font-size: 0.9rem;
+}
+
+p[style*="color:green"],
+p[style*="color: green"] {
+    background: rgba(78, 204, 163, 0.1);
+    border: 1px solid rgba(78, 204, 163, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    color: var(--success) !important;
+    font-size: 0.9rem;
+}
+
+/* ── SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
